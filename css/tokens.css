@@ -1,0 +1,85 @@
+/* ============================================================
+   ES11 Capital · João Vittor Andrade — Design Tokens
+   Identidade: azul-marinho + dourado (só filete) + fundos claros.
+   Sensação: confiança, clareza, patrimônio, planejamento, proximidade.
+   ============================================================ */
+
+:root {
+  /* --- Cor: ~70% claro / navy estrutural / ouro só em detalhe --- */
+  --navy-900: #0a1a2f; /* títulos, footer, acentos escuros */
+  --navy-800: #0f2440;
+  --navy-700: #163256;
+  --navy-600: #22436b;
+
+  --gold: #c4a24c; /* ouro — só filete/detalhe, nunca bloco */
+  --gold-soft: #d8bd7a;
+  --gold-deep: #a8863a;
+
+  --paper: #ffffff; /* base / papel */
+  --paper-2: #f6f4ef; /* alternância morna de seção */
+  --paper-3: #eef1f5; /* variação fria sutil */
+
+  --ink: #12233b; /* texto navy sobre claro */
+  --on-navy: #eaf0f8; /* texto claro sobre navy */
+
+  /* derivados úteis */
+  --ink-70: rgba(18, 35, 59, 0.72);
+  --ink-55: rgba(18, 35, 59, 0.56);
+  --ink-40: rgba(18, 35, 59, 0.4);
+  --on-navy-70: rgba(234, 240, 248, 0.72);
+  --on-navy-55: rgba(234, 240, 248, 0.55);
+
+  --gold-line: rgba(196, 162, 76, 0.55); /* filete de ouro */
+  --gold-glow: rgba(196, 162, 76, 0.14);
+  --hairline: rgba(18, 35, 59, 0.12); /* separadores sobre claro */
+  --hairline-dark: rgba(234, 240, 248, 0.14); /* separadores sobre navy */
+
+  /* --- Tipografia --- */
+  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+
+  /* Escala tipográfica (fluida) */
+  --fs-display: clamp(2.5rem, 6vw, 4.75rem);
+  --fs-h1: clamp(2.2rem, 5vw, 4rem);
+  --fs-h2: clamp(1.85rem, 3.6vw, 2.9rem);
+  --fs-h3: clamp(1.25rem, 2vw, 1.6rem);
+  --fs-quote: clamp(1.45rem, 3vw, 2.35rem);
+  --fs-body-lg: clamp(1.06rem, 1.3vw, 1.22rem);
+  --fs-body: 1rem;
+  --fs-small: 0.9rem;
+  --fs-eyebrow: 0.75rem;
+
+  --lh-tight: 1.06;
+  --lh-title: 1.14;
+  --lh-body: 1.68;
+
+  --ls-eyebrow: 0.26em;
+  --ls-label: 0.14em;
+
+  --fw-body: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-display: 460; /* Fraunces variável — peso "sóbrio", não pesado */
+
+  /* --- Espaço / layout --- */
+  --maxw: 1180px;
+  --maxw-text: 62ch;
+  --gutter: clamp(1.25rem, 5vw, 4.5rem);
+  --section-y: clamp(4.5rem, 11vh, 9rem);
+  --nav-h: 68px;
+  --radius: 14px; /* cards discretos */
+  --radius-sm: 10px;
+  --radius-pill: 999px;
+
+  /* --- Motion (princípios Emil Kowalski) --- */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --dur-fast: 140ms;
+  --dur-ui: 220ms;
+  --dur-slow: 620ms; /* reveals de entrada (uma vez, no scroll) */
+
+  /* --- Sombra: relevo discreto, nunca gloss/pesado --- */
+  --shadow-sm: 0 1px 0 rgba(255, 255, 255, 0.6), 0 10px 26px -20px rgba(10, 26, 47, 0.45);
+  --shadow-md: 0 1px 0 rgba(255, 255, 255, 0.5), 0 26px 60px -36px rgba(10, 26, 47, 0.5);
+  --shadow-navy: 0 30px 80px -44px rgba(6, 16, 30, 0.85);
+}

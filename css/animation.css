@@ -1,0 +1,103 @@
+/* ============================================================
+   ES11 · Motion — reveals no scroll (princípios Emil Kowalski)
+   - Anima só transform/opacity (GPU). Entrada = ease-out.
+   - Reveals disparam UMA vez via IntersectionObserver (.is-visible).
+   - Sem JS, o conteúdo aparece normalmente (.js habilita o estado inicial).
+   - prefers-reduced-motion: sem movimento, só fade suave.
+   ============================================================ */
+
+/* Estado inicial só quando o JS está ativo (evita "flash" e degrada sem JS) */
+.js .reveal,
+.js .reveal-lines .line__inner,
+.js .reveal-media {
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+/* --- Fade up --- */
+.js .reveal {
+  transform: translateY(18px);
+  transition: opacity var(--dur-slow) var(--ease-out), transform var(--dur-slow) var(--ease-out);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* --- Stagger: filhos entram em cascata --- */
+/* reveal.js seta --i (índice) em cada filho .reveal dentro de .stagger */
+.js .stagger > .reveal {
+  transition-delay: calc(min(var(--i, 0), 6) * 65ms);
+}
+
+/* --- Reveal de mídia: blur + scale sutil (nada surge do nada) --- */
+.js .reveal-media {
+  transform: scale(0.97);
+  filter: blur(6px);
+  transition: opacity var(--dur-slow) var(--ease-out), transform var(--dur-slow) var(--ease-out),
+    filter var(--dur-slow) var(--ease-out);
+}
+.reveal-media.is-visible {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+
+/* Títulos NÃO fatiados (mobile / reduced-motion): fade-up simples,
+   sem overflow:hidden — o texto quebra naturalmente. */
+.js .reveal-lines:not([data-sliced]) {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity var(--dur-slow) var(--ease-out), transform var(--dur-slow) var(--ease-out);
+}
+.reveal-lines:not([data-sliced]).is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* --- Mask-reveal por linha (títulos display) --- */
+/* reveal.js fatia o título nos <br> em .line > .line__inner */
+.reveal-lines .line {
+  display: block;
+  overflow: hidden;
+}
+.js .reveal-lines .line__inner {
+  display: block;
+  transform: translateY(110%);
+  transition: opacity var(--dur-slow) var(--ease-out), transform var(--dur-slow) var(--ease-out);
+}
+.reveal-lines.is-visible .line__inner {
+  opacity: 1;
+  transform: none;
+}
+/* cascata entre linhas */
+.reveal-lines.is-visible .line:nth-child(2) .line__inner {
+  transition-delay: 70ms;
+}
+.reveal-lines.is-visible .line:nth-child(3) .line__inner {
+  transition-delay: 140ms;
+}
+.reveal-lines.is-visible .line:nth-child(4) .line__inner {
+  transition-delay: 210ms;
+}
+
+/* ============================================================
+   Reduced motion — sem deslocamento/blur; comprensão via fade leve.
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .js .reveal,
+  .js .reveal-media,
+  .js .reveal-lines,
+  .js .reveal-lines .line__inner {
+    transform: none !important;
+    filter: none !important;
+    transition: opacity 240ms ease !important;
+    transition-delay: 0ms !important;
+  }
+  .reveal.is-visible,
+  .reveal-media.is-visible,
+  .reveal-lines.is-visible,
+  .reveal-lines.is-visible .line__inner {
+    opacity: 1;
+  }
+}
