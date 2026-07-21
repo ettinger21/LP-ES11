@@ -38,6 +38,29 @@ que a estratégia é personalizada e que, se o consórcio não for o melhor cami
 - **Motion discreto** (Emil Kowalski): fade-up, mask-reveal por linha nos títulos, stagger em
   cards/listas, blur+scale sutil nas imagens. Tudo dispara **uma vez** no scroll e respeita
   `prefers-reduced-motion`. Nada de parallax pesado ou animação que distraia.
+  **Exceção deliberada:** a Hero revela no *load*, não via IntersectionObserver — a primeira
+  dobra (e principalmente o CTA) nunca pode depender de scroll para existir.
+
+### Ritmo de faixas (por que o institucional é claro)
+
+Toda seção é uma **faixa de ponta a ponta**; não existe card flutuante dentro de faixa. A
+alternância de fundos dá o ritmo:
+
+| Seção | Fundo |
+|---|---|
+| Hero, Sobre | `--paper` |
+| Para quem é | `--paper-2` |
+| Especialidades | `--paper` |
+| Como funciona | `--paper-3` |
+| **Institucional ES11** | `--paper` + filetes dourados |
+| Dúvidas | `--paper-2` |
+| CTA final + Rodapé | `--navy-900` (full-bleed) |
+
+O institucional já foi um card navy flutuante e destoava — parecia um bloco solto numa página
+clara. Ele virou faixa clara por uma razão de hierarquia: **o navy é reservado ao fecho**. Cor
+escassa carrega mais peso, então concentrar o escuro no CTA + rodapé transforma a chegada ali num
+momento de "é agora". O institucional é conteúdo de credibilidade, não o clímax — sua identidade
+vem dos filetes dourados e da logo em cores originais, não de fundo escuro.
 
 ## 3. Divergências do briefing (com justificativa)
 

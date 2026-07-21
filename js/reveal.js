@@ -28,6 +28,17 @@
     });
   }
 
+  /* 1b) Telas estreitas: as quebras fixas do título viram ESPAÇO.
+     Esconder o <br> via CSS removeria a quebra sem inserir espaço, colando
+     palavras quando o HTML não tem whitespace ao redor da tag
+     (ex.: "com a<br />estrutura" -> "aestrutura"). Trocar o nó por " "
+     garante o espaço independentemente de como o HTML foi escrito. */
+  function softenBreaks() {
+    document.querySelectorAll(".reveal-lines br").forEach(function (br) {
+      br.parentNode.replaceChild(document.createTextNode(" "), br);
+    });
+  }
+
   /* 2) Indexar filhos .reveal dentro de cada .stagger. */
   function indexStagger() {
     document.querySelectorAll(".stagger").forEach(function (group) {
@@ -87,9 +98,15 @@
     });
   }
 
-  // Fatiar só em telas largas: no mobile os títulos precisam quebrar
-  // naturalmente (o mask-reveal assume 1 linha visual por fatia).
-  if (!reduce && window.innerWidth >= 700) sliceLines();
+  // Telas estreitas: título quebra naturalmente (o mask-reveal assume
+  // 1 linha visual por fatia, o que não vale no mobile).
+  // Telas largas: fatia em linhas, exceto sob reduced-motion — aí as
+  // quebras originais do <br> são mantidas.
+  if (window.innerWidth < 700) {
+    softenBreaks();
+  } else if (!reduce) {
+    sliceLines();
+  }
   indexStagger();
   revealHero();
   observe();

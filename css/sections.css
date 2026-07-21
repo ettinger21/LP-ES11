@@ -493,49 +493,50 @@
   }
 }
 
-/* ============ INSTITUCIONAL ES11 ============ */
+/* ============ INSTITUCIONAL ES11 ============
+   Faixa clara de ponta a ponta, como todas as outras seções — sem card
+   flutuante. O navy fica reservado ao fecho (CTA + rodapé), onde a cor
+   escassa rende mais impacto. A identidade institucional é marcada por
+   filetes dourados e pela logo em cores originais, não por fundo escuro. */
 .es11 {
-  overflow: hidden;
+  position: relative;
+  background: var(--paper);
+}
+.es11::before,
+.es11::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-line), transparent);
+}
+.es11::before {
+  top: 0;
+}
+.es11::after {
+  bottom: 0;
 }
 .es11__inner {
   display: grid;
   grid-template-columns: auto 1fr;
-  gap: clamp(2rem, 6vw, 5rem);
+  gap: clamp(1.75rem, 4.5vw, 3.5rem);
   align-items: center;
-  padding: clamp(2.5rem, 5vw, 4rem);
-  background: var(--navy-900);
-  color: var(--on-navy);
-  border-radius: calc(var(--radius) + 6px);
-  position: relative;
 }
-.es11__inner::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  box-shadow: inset 0 0 0 1px var(--hairline-dark);
-  pointer-events: none;
-}
-/* Logo oficial em versão reversa (branca) sobre o navy */
+/* Logo oficial em cores originais (fundo claro) */
 .es11__mark {
-  width: clamp(120px, 15vw, 190px);
+  width: clamp(140px, 17vw, 215px);
   height: auto;
-  filter: brightness(0) invert(1);
-  opacity: 0.95;
+}
+/* Filete vertical amarra logo + texto num único lockup institucional
+   (mesma linguagem do filete da citação em "Sobre"). */
+.es11__body {
+  border-left: 1px solid var(--gold-line);
+  padding-left: clamp(1.75rem, 4.5vw, 3.5rem);
 }
 .es11__body h2 {
-  color: var(--paper);
   font-size: var(--fs-h2);
   margin: 0.75rem 0 1.1rem;
-}
-.es11__body .eyebrow {
-  color: var(--gold-soft);
-}
-.es11__body .eyebrow::before {
-  background: var(--gold-soft);
-}
-.es11__body .lead {
-  color: var(--on-navy-70);
 }
 .es11__links {
   margin-top: 1.75rem;
@@ -543,13 +544,20 @@
   gap: 2rem;
   flex-wrap: wrap;
 }
-.es11__links .link-underline {
-  color: var(--on-navy);
-}
 @media (max-width: 720px) {
   .es11__inner {
     grid-template-columns: 1fr;
-    gap: 1.25rem;
+    gap: 1.5rem;
+  }
+  .es11__mark {
+    width: 140px;
+  }
+  /* empilhado: o filete passa de vertical para horizontal */
+  .es11__body {
+    border-left: 0;
+    border-top: 1px solid var(--gold-line);
+    padding-left: 0;
+    padding-top: 1.5rem;
   }
 }
 

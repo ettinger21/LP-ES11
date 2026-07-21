@@ -51,13 +51,9 @@ body {
   min-width: 0;
 }
 
-/* Títulos com <br> reflow no mobile: as quebras fixas viram wrap natural.
-   (No desktop o reveal.js remove os <br> ao fatiar em linhas.) */
-@media (max-width: 700px) {
-  .reveal-lines br {
-    display: none;
-  }
-}
+/* No mobile, as quebras fixas dos títulos viram espaço — isso é feito em
+   js/reveal.js (softenBreaks), e não via CSS: esconder o <br> removeria a
+   quebra sem inserir espaço, colando as palavras vizinhas. */
 
 img {
   max-width: 100%;
