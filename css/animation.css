@@ -57,9 +57,14 @@
 
 /* --- Mask-reveal por linha (títulos display) --- */
 /* reveal.js fatia o título nos <br> em .line > .line__inner */
+/* O padding-bottom dá folga para as descidas das letras (g, j, p, q, y)
+   não serem cortadas pelo overflow:hidden da máscara; a margem negativa
+   devolve esse espaço para o layout não abrir buracos entre as linhas. */
 .reveal-lines .line {
   display: block;
   overflow: hidden;
+  padding-bottom: 0.22em;
+  margin-bottom: -0.22em;
 }
 .js .reveal-lines .line__inner {
   display: block;

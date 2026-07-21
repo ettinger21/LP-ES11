@@ -39,7 +39,8 @@
   --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
 
   /* Escala tipográfica (fluida) */
-  --fs-display: clamp(2.5rem, 6vw, 4.75rem);
+  /* Hero: escala contida para a 1ª dobra caber inteira em 100svh */
+  --fs-display: clamp(2rem, 3.4vw, 3.15rem);
   --fs-h1: clamp(2.2rem, 5vw, 4rem);
   --fs-h2: clamp(1.85rem, 3.6vw, 2.9rem);
   --fs-h3: clamp(1.25rem, 2vw, 1.6rem);
@@ -66,7 +67,7 @@
   --maxw-text: 62ch;
   --gutter: clamp(1.25rem, 5vw, 4.5rem);
   --section-y: clamp(4.5rem, 11vh, 9rem);
-  --nav-h: 68px;
+  --nav-h: 74px;
   --radius: 14px; /* cards discretos */
   --radius-sm: 10px;
   --radius-pill: 999px;

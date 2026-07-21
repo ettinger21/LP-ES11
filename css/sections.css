@@ -18,10 +18,15 @@
 }
 
 /* ============ HERO ============ */
+/* A 1ª dobra precisa caber INTEIRA na viewport ao abrir.
+   100svh = altura visível real no mobile (desconta a barra do browser). */
 .hero {
   position: relative;
-  padding-top: calc(var(--nav-h) + clamp(2.5rem, 7vh, 6rem));
-  padding-bottom: clamp(3rem, 8vh, 6rem);
+  min-height: 100svh;
+  display: grid;
+  align-items: center;
+  padding-top: calc(var(--nav-h) + clamp(0.5rem, 2.5vh, 1.75rem));
+  padding-bottom: clamp(1rem, 4vh, 2.5rem);
   overflow: hidden;
   isolation: isolate;
 }
@@ -38,16 +43,16 @@
 }
 .hero__inner {
   display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
-  gap: clamp(2rem, 5vw, 4.5rem);
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: clamp(1.75rem, 4.5vw, 4rem);
   align-items: center;
 }
 .hero__copy .eyebrow {
-  margin-bottom: 1.25rem;
+  margin-bottom: 0.9rem;
 }
 .hero__title {
   font-size: var(--fs-display);
-  line-height: var(--lh-tight);
+  line-height: 1.1;
   letter-spacing: -0.02em;
 }
 .hero__title em {
@@ -55,7 +60,7 @@
   color: var(--gold-deep);
 }
 .hero__sub {
-  margin-top: 1.5rem;
+  margin-top: 1.1rem;
   font-size: var(--fs-body-lg);
   color: var(--ink-70);
   max-width: 46ch;
@@ -63,9 +68,9 @@
 .hero__points {
   list-style: none;
   padding: 0;
-  margin: 1.75rem 0 0;
+  margin: 1.35rem 0 0;
   display: grid;
-  gap: 0.7rem;
+  gap: 0.55rem;
   max-width: 48ch;
 }
 .hero__points li {
@@ -97,26 +102,31 @@
   transform: rotate(-45deg);
 }
 .hero__actions {
-  margin-top: 2.25rem;
+  margin-top: 1.75rem;
   display: flex;
   align-items: center;
   gap: 1.5rem;
   flex-wrap: wrap;
 }
 
+/* Retrato com altura ancorada na viewport: o bloco fica sempre
+   proporcional à dobra, sem sobras de espaço acima/abaixo. */
 .hero__portrait {
   position: relative;
   justify-self: end;
-  width: 100%;
-  max-width: 460px;
+  width: auto;
+  max-width: 100%;
 }
 .hero__frame {
   position: relative;
+  height: clamp(300px, 56svh, 500px);
+  aspect-ratio: 4 / 5;
+  width: auto;
+  max-width: 100%;
   border-radius: calc(var(--radius) + 6px);
   overflow: hidden;
   background: var(--paper-2);
   box-shadow: var(--shadow-md);
-  aspect-ratio: 4 / 5;
 }
 .hero__frame::after {
   content: "";
@@ -161,14 +171,31 @@
 }
 
 @media (max-width: 900px) {
+  .hero {
+    padding-top: calc(var(--nav-h) + clamp(0.5rem, 2vh, 1.25rem));
+    padding-bottom: clamp(1rem, 3vh, 2rem);
+  }
   .hero__inner {
     grid-template-columns: 1fr;
     text-align: left;
+    gap: clamp(1rem, 2.5vh, 1.6rem);
   }
   .hero__portrait {
     order: -1;
     justify-self: start;
-    max-width: 340px;
+  }
+  /* retrato enxuto p/ sobrar altura ao texto e ao CTA na 1ª dobra */
+  .hero__frame {
+    height: clamp(180px, 26svh, 280px);
+  }
+  .hero__sub {
+    margin-top: 0.9rem;
+  }
+  .hero__points {
+    margin-top: 1rem;
+  }
+  .hero__actions {
+    margin-top: 1.35rem;
   }
   .hero__badge {
     font-size: 0.74rem;
@@ -180,14 +207,17 @@
   display: grid;
   grid-template-columns: 0.85fr 1.15fr;
   gap: clamp(2rem, 5vw, 4.5rem);
-  align-items: center;
+  /* stretch: a imagem acompanha a altura da coluna de texto,
+     eliminando as sobras de espaço acima/abaixo dela. */
+  align-items: stretch;
 }
 .sobre__media {
   position: relative;
+  height: 100%;
+  min-height: 420px;
   border-radius: var(--radius);
   overflow: hidden;
   box-shadow: var(--shadow-md);
-  aspect-ratio: 4 / 5;
 }
 .sobre__media::after {
   content: "";
@@ -200,6 +230,8 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  /* enquadra no assunto (João + tela da ES11), evitando excesso de teto */
+  object-position: center 62%;
 }
 .sobre__body h2 {
   font-size: var(--fs-h2);
@@ -244,8 +276,12 @@
   .sobre__grid {
     grid-template-columns: 1fr;
   }
+  /* empilhado: volta a ter proporção própria (sem esticar) */
   .sobre__media {
     max-width: 380px;
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 4 / 5;
   }
 }
 
@@ -480,15 +516,12 @@
   box-shadow: inset 0 0 0 1px var(--hairline-dark);
   pointer-events: none;
 }
+/* Logo oficial em versão reversa (branca) sobre o navy */
 .es11__mark {
-  font-family: var(--font-display);
-  font-size: clamp(3.5rem, 8vw, 6rem);
-  font-weight: 600;
-  color: var(--paper);
-  line-height: 1;
-}
-.es11__mark b {
-  color: var(--gold-soft);
+  width: clamp(120px, 15vw, 190px);
+  height: auto;
+  filter: brightness(0) invert(1);
+  opacity: 0.95;
 }
 .es11__body h2 {
   color: var(--paper);
@@ -589,38 +622,41 @@
   }
 }
 
-/* ============ CTA FINAL ============ */
-.cta__card {
+/* ============ CTA FINAL — seção inteira (full-bleed) ============ */
+.cta {
   position: relative;
   overflow: hidden;
+  isolation: isolate;
   text-align: center;
-  padding: clamp(3rem, 7vw, 5.5rem) clamp(1.5rem, 5vw, 4rem);
   background: var(--navy-900);
   color: var(--on-navy);
-  border-radius: calc(var(--radius) + 10px);
-  box-shadow: var(--shadow-navy);
+  padding-block: clamp(3.5rem, 9vh, 6.5rem);
 }
+/* z-index negativo mantém o glow atrás do conteúdo SEM entrar no fluxo
+   (era isto que gerava o bloco de espaço vazio no topo do card). */
 .cta__glow {
   position: absolute;
-  z-index: 0;
-  top: -40%;
+  z-index: -1;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);
-  width: min(760px, 90%);
-  height: 520px;
-  background: radial-gradient(ellipse at center, rgba(196, 162, 76, 0.22), transparent 65%);
+  transform: translate(-50%, -50%);
+  width: min(900px, 95%);
+  height: min(560px, 100%);
+  background: radial-gradient(ellipse at center, rgba(196, 162, 76, 0.2), transparent 68%);
   pointer-events: none;
 }
-.cta__card > * {
+.cta__inner {
   position: relative;
-  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-.cta__card .eyebrow {
+.cta .eyebrow {
   color: var(--gold-soft);
   margin-bottom: 1.1rem;
 }
-.cta__card .eyebrow::before,
-.cta__card .eyebrow::after {
+.cta .eyebrow::before,
+.cta .eyebrow::after {
   background: var(--gold-soft);
 }
 .cta__title {
@@ -631,6 +667,7 @@
   margin: 1.25rem auto 0;
   color: var(--on-navy-70);
   font-size: var(--fs-body-lg);
+  text-align: center;
 }
 .cta__actions {
   margin-top: 2.25rem;

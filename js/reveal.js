@@ -38,9 +38,30 @@
     });
   }
 
-  /* 3) Observar e revelar. */
+  /* 3) HERO: revela no load, nunca via scroll.
+     A 1ª dobra (incluindo o CTA principal) precisa estar sempre visível ao
+     abrir — não pode depender do IntersectionObserver. Mantém-se a animação
+     de entrada, apenas disparada imediatamente e com leve cascata. */
+  function revealHero() {
+    var hero = document.querySelector(".hero");
+    if (!hero) return;
+    var els = hero.querySelectorAll(".reveal, .reveal-lines, .reveal-media");
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () {
+        els.forEach(function (el, i) {
+          el.style.transitionDelay = Math.min(i, 6) * 60 + "ms";
+          el.classList.add("is-visible");
+        });
+      });
+    });
+  }
+
+  /* 4) Observar e revelar o restante da página. */
   function observe() {
-    var targets = document.querySelectorAll(".reveal, .reveal-lines, .reveal-media");
+    var all = document.querySelectorAll(".reveal, .reveal-lines, .reveal-media");
+    var targets = Array.prototype.filter.call(all, function (el) {
+      return !el.closest(".hero"); // hero já tratado em revealHero()
+    });
 
     if (!("IntersectionObserver" in window)) {
       targets.forEach(function (el) {
@@ -70,5 +91,6 @@
   // naturalmente (o mask-reveal assume 1 linha visual por fatia).
   if (!reduce && window.innerWidth >= 700) sliceLines();
   indexStagger();
+  revealHero();
   observe();
 })();
