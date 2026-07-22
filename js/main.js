@@ -10,10 +10,17 @@
 
   var C = window.ES11_CONSULTOR || {};
 
-  /* -------- Analytics (graceful: funciona com gtag OU dataLayer) -------- */
+  /* -------- Analytics --------
+     Envia para o Vercel Analytics e, se um dia houver GA4/GTM na página,
+     para eles também. Tudo opcional: sem nenhum deles, vira no-op. */
   function track(event, params) {
     var payload = Object.assign({ consultant_id: C.id || "joao-vittor-andrade" }, params || {});
     try {
+      // Vercel Web Analytics (eventos personalizados exigem plano Pro;
+      // no plano Hobby as visitas de página continuam sendo contadas)
+      if (typeof window.va === "function") {
+        window.va("event", { name: event, data: payload });
+      }
       if (typeof window.gtag === "function") {
         window.gtag("event", event, payload);
       }

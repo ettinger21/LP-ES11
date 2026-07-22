@@ -11,7 +11,7 @@
     />
     <meta name="author" content="João Vittor Andrade" />
     <meta name="theme-color" content="#0a1a2f" />
-    <link rel="canonical" href="https://www.es11capital.com.br/consultores/joao-vittor-andrade" />
+    <link rel="canonical" href="https://joaovittorandrade.com.br/" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="profile" />
@@ -25,12 +25,12 @@
       property="og:description"
       content="Planejamento patrimonial para empresários e investidores que querem decidir com estratégia. Agende um diagnóstico gratuito."
     />
-    <meta property="og:url" content="https://www.es11capital.com.br/consultores/joao-vittor-andrade" />
+    <meta property="og:url" content="https://joaovittorandrade.com.br/" />
     <!-- og:image PRECISA ser URL absoluta: scrapers (WhatsApp, LinkedIn,
          Facebook) nao resolvem caminho relativo e a previa quebra. -->
     <meta
       property="og:image"
-      content="https://www.es11capital.com.br/consultores/joao-vittor-andrade/assets/img/og-cover.jpg"
+      content="https://joaovittorandrade.com.br/assets/img/og-cover.jpg"
     />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
@@ -50,7 +50,7 @@
     />
     <meta
       name="twitter:image"
-      content="https://www.es11capital.com.br/consultores/joao-vittor-andrade/assets/img/og-cover.jpg"
+      content="https://joaovittorandrade.com.br/assets/img/og-cover.jpg"
     />
 
     <!-- Favicon: monograma ES11 em SVG inline -->
@@ -88,19 +88,19 @@
         "@graph": [
           {
             "@type": "ProfilePage",
-            "@id": "https://www.es11capital.com.br/consultores/joao-vittor-andrade#page",
-            "url": "https://www.es11capital.com.br/consultores/joao-vittor-andrade",
+            "@id": "https://joaovittorandrade.com.br/#page",
+            "url": "https://joaovittorandrade.com.br/",
             "name": "João Vittor Andrade — Consultor Financeiro da ES11 Capital",
             "inLanguage": "pt-BR",
-            "mainEntity": { "@id": "https://www.es11capital.com.br/consultores/joao-vittor-andrade#joao" }
+            "mainEntity": { "@id": "https://joaovittorandrade.com.br/#joao" }
           },
           {
             "@type": "Person",
-            "@id": "https://www.es11capital.com.br/consultores/joao-vittor-andrade#joao",
+            "@id": "https://joaovittorandrade.com.br/#joao",
             "name": "João Vittor Andrade",
             "jobTitle": "Fundador e Consultor Financeiro",
             "description": "Consultor de planejamento patrimonial para empresários e investidores. Trabalha com estratégia, análise de cenários e adequação ao perfil de cada cliente.",
-            "image": "https://www.es11capital.com.br/consultores/joao-vittor-andrade/assets/img/joao-retrato.webp",
+            "image": "https://joaovittorandrade.com.br/assets/img/joao-retrato.webp",
             "worksFor": { "@id": "https://www.es11capital.com.br/#org" },
             "address": {
               "@type": "PostalAddress",
@@ -126,7 +126,7 @@
           },
           {
             "@type": "FAQPage",
-            "@id": "https://www.es11capital.com.br/consultores/joao-vittor-andrade#faq",
+            "@id": "https://joaovittorandrade.com.br/#faq",
             "mainEntity": [
               {
                 "@type": "Question",
@@ -700,6 +700,18 @@
         </div>
       </div>
     </footer>
+
+    <!-- Vercel Web Analytics — servido pela própria Vercel quando o recurso
+         está ativo no painel do projeto. A fila `va` precisa existir ANTES
+         do main.js para não perder os eventos disparados no carregamento. -->
+    <script>
+      window.va =
+        window.va ||
+        function () {
+          (window.vaq = window.vaq || []).push(arguments);
+        };
+    </script>
+    <script defer src="/_vercel/insights/script.js"></script>
 
     <!-- Scripts (vanilla, sem dependências) -->
     <script src="js/consultor.js" defer></script>

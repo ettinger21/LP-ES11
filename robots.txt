@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.es11capital.com.br/sitemap.xml
+Sitemap: https://joaovittorandrade.com.br/sitemap.xml

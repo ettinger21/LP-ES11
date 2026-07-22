@@ -1,0 +1,15 @@
+# Arquivos que NAO devem ir para o site publico.
+# Sem isto, qualquer um poderia baixar o briefing interno em
+# https://joaovittorandrade.com.br/Briefing_LPs_Consultores_ES11.pdf
+
+# Documento interno do cliente (estrategia, dados dos dois consultores)
+Briefing_LPs_Consultores_ES11.pdf
+
+# Documentacao de desenvolvimento
+CLAUDE.md
+plan.md
+DEPLOY.md
+
+# Imagens originais duplicadas (as versoes servidas estao em assets/img/)
+joao-vittor-es11.webp
+joao-vittor-retrato.webp
