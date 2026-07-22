@@ -170,35 +170,125 @@
   color: var(--gold-deep);
 }
 
+/* MOBILE: a 1ª dobra precisa caber em celulares reais (360-414 x 667-896).
+   Cada elemento tem orçamento de altura apertado, então tudo aqui é
+   deliberadamente compacto — sem isso o CTA cai abaixo da dobra. */
 @media (max-width: 900px) {
   .hero {
-    padding-top: calc(var(--nav-h) + clamp(0.5rem, 2vh, 1.25rem));
-    padding-bottom: clamp(1rem, 3vh, 2rem);
+    padding-top: calc(var(--nav-h) + clamp(0.35rem, 1.2vh, 0.85rem));
+    padding-bottom: clamp(0.75rem, 2vh, 1.5rem);
   }
   .hero__inner {
     grid-template-columns: 1fr;
     text-align: left;
-    gap: clamp(1rem, 2.5vh, 1.6rem);
+    gap: clamp(0.75rem, 1.8vh, 1.15rem);
   }
   .hero__portrait {
     order: -1;
     justify-self: start;
   }
-  /* retrato enxuto p/ sobrar altura ao texto e ao CTA na 1ª dobra */
   .hero__frame {
-    height: clamp(180px, 26svh, 280px);
+    height: clamp(150px, 21svh, 230px);
+  }
+  .hero__title {
+    font-size: clamp(1.75rem, 7.2vw, 2.35rem);
+    line-height: 1.14;
+  }
+  .hero__copy .eyebrow {
+    margin-bottom: 0.6rem;
+    letter-spacing: 0.16em; /* cabe em 1 linha a partir de ~360px */
+    font-size: 0.7rem;
   }
   .hero__sub {
-    margin-top: 0.9rem;
+    margin-top: 0.75rem;
+    font-size: 0.98rem;
+    line-height: 1.5;
   }
   .hero__points {
-    margin-top: 1rem;
+    margin-top: 0.85rem;
+    gap: 0.45rem;
+  }
+  .hero__points li {
+    font-size: 0.9rem;
+    line-height: 1.42;
+    padding-left: 1.6rem;
+  }
+  .hero__points li::before {
+    width: 1.05rem;
+    height: 1.05rem;
   }
   .hero__actions {
-    margin-top: 1.35rem;
+    margin-top: 1.05rem;
+    gap: 1rem;
+  }
+  /* badge sai de cima da foto e vira chip em linha única embaixo dela:
+     no mobile ele quebrava em 3 linhas sobre o retrato */
+  .hero__badge {
+    position: static;
+    width: fit-content;
+    max-width: 100%;
+    margin-top: 0.55rem;
+    padding: 0.4rem 0.75rem;
+    font-size: 0.72rem;
+    white-space: nowrap;
+  }
+}
+
+/* VIEWPORTS BAIXOS (iPhone SE e Androids pequenos): a altura, não a
+   largura, é o gargalo. Comprime mais um passo para o CTA continuar
+   dentro da 1ª dobra. */
+@media (max-width: 900px) and (max-height: 800px) {
+  .hero__inner {
+    gap: 0.7rem;
+  }
+  .hero__frame {
+    height: clamp(118px, 17svh, 165px);
   }
   .hero__badge {
-    font-size: 0.74rem;
+    margin-top: 0.4rem;
+    padding: 0.3rem 0.65rem;
+    font-size: 0.68rem;
+  }
+  .hero__title {
+    font-size: clamp(1.6rem, 6.6vw, 2rem);
+  }
+  .hero__sub {
+    margin-top: 0.6rem;
+    font-size: 0.92rem;
+    line-height: 1.45;
+  }
+  .hero__points {
+    margin-top: 0.7rem;
+    gap: 0.35rem;
+  }
+  .hero__points li {
+    font-size: 0.85rem;
+    line-height: 1.38;
+  }
+  .hero__actions {
+    margin-top: 0.85rem;
+  }
+}
+
+/* TELAS ULTRA-BAIXAS (iPhone SE 375x667 e similares): último passo.
+   O chip de cargo sai — a função já aparece no header e é reafirmada
+   logo abaixo, em "Sobre" —, preservando a foto (sinal de confiança)
+   e mantendo o CTA dentro da dobra. */
+@media (max-width: 900px) and (max-height: 700px) {
+  .hero__frame {
+    height: clamp(92px, 14svh, 120px);
+  }
+  .hero__badge {
+    display: none;
+  }
+  .hero__inner {
+    gap: 0.6rem;
+  }
+  .hero__sub {
+    margin-top: 0.5rem;
+  }
+  .hero__points {
+    margin-top: 0.6rem;
   }
 }
 

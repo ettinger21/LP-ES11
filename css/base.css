@@ -146,13 +146,6 @@ p {
   color: var(--ink-70);
 }
 
-/* Filete de ouro decorativo */
-.rule-gold {
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--gold-line), transparent);
-  border: 0;
-}
-
 .skip-link {
   position: absolute;
   left: 12px;
@@ -453,8 +446,18 @@ p {
   .nav__cta .cta-full {
     display: none;
   }
+  /* CTA principal precisa de area de toque confortavel (44x44) */
   .nav__cta {
     padding: 0.65rem 0.8rem;
+    min-width: 44px;
+    min-height: 44px;
+  }
+  /* header mais baixo devolve altura para a 1ª dobra no celular */
+  :root {
+    --nav-h: 62px;
+  }
+  .nav__logo {
+    height: 32px;
   }
 }
 @media (max-width: 400px) {
@@ -514,9 +517,12 @@ p {
   list-style: none;
   padding: 0;
   display: grid;
-  gap: 0.7rem;
+  gap: 0.35rem;
 }
+/* inline-block + padding garante altura de toque >= 24px (WCAG 2.5.8) */
 .footer__col a {
+  display: inline-block;
+  padding-block: 0.35rem;
   color: var(--on-navy-70);
   font-size: 0.95rem;
   transition: color var(--dur-ui) var(--ease-out);
